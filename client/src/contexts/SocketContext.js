@@ -13,7 +13,8 @@ export const SocketProvider = ({ children }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const socketIo = io('http://localhost:4000'); // Update with your backend URL
+    const host = process.env.HOST || 'http://localhost:4000'
+    const socketIo = io(host); // Update with your backend URL
     setSocket(socketIo);
 
     socketIo.on('temperatureData', (newData) => {
